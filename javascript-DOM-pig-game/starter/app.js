@@ -16,6 +16,7 @@ gamePlaying = false;
 
 //SET WIN SCORE
 document.querySelector('.btn-win').addEventListener('click', function() {
+    document.getElementById('win').disabled = true;
     winScore = document.getElementById('win').value;
     document.querySelector('.btn-win').style.display = 'none';
     document.querySelector('.btn-set').style.display = 'block';
@@ -29,6 +30,7 @@ function init() {
     
     document.querySelector('.btn-win').style.display = 'block';
     document.querySelector('.btn-set').style.display = 'none';
+    document.getElementById('win').disabled = false;
     document.querySelector('.dice-1').style.display = 'none';
     document.querySelector('.dice-2').style.display = 'none';
 
@@ -54,6 +56,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         //CREATE RANDOM NUM
         document.querySelector('.btn-win').style.display = 'none';
         document.querySelector('.btn-set').style.display = 'block';
+        document.getElementById('win').disabled = true;
         var dice1 = Math.floor(Math.random() * 6) + 1;
         var dice2 = Math.floor(Math.random() * 6) + 1;
         //DISPLAY RESULT
