@@ -304,6 +304,11 @@ var controller = (function(cardCounter, UI) {
             document.getElementById(DOM.stand).disabled = false;
         }
     }
+
+    var disableAll = function() {
+        document.getElementById(DOM.hit).disabled = true;
+        document.getElementById(DOM.stand).disabled = true;
+    }
     
     //3. DEAL
     var play = function() {
@@ -313,24 +318,7 @@ var controller = (function(cardCounter, UI) {
         }
     }
     
-    //4. DRAW 2 CARDS, HIDE ONE FROM DEALER & UPDATE SCORES & DECK
-    var blackJackCondition = function(player) {
-        var regex = /[kqj]/;
-        if (blackJack.data.hand[player][0].charAt(0) === 'a' && blackJack.data.hand[player][1].charAt(0).match(/[kqj]/)) {
-            document.getElementById(DOM.win).textContent = 'BLACK JACK';
-            blackJack.data.handValue[player] = 21;
-            player === 0 ? document.getElementById(DOM.playerScore).textContent = '21' : document.getElementById(DOM.dealerScore).textContent = '21'; //UI
-            player === 0 ? blackJack.data.winCondition = 'win' : blackJack.data.winCondition = 'lose';
-            nextRound();
-        } else if (blackJack.data.hand[player][0].charAt(0).match(/[kqj]/) && blackJack.data.hand[player][1].charAt(0) === 'a') {
-            document.getElementById(DOM.win).textContent = 'BLACK JACK';
-            blackJack.data.handValue[player] = 21;
-            player === 0 ? document.getElementById(DOM.playerScore).textContent = '21' : document.getElementById(DOM.dealerScore).textContent = '21'; //UI
-            player === 0 ? blackJack.data.winCondition = 'win' : blackJack.data.winCondition = 'lose';
-            nextRound();
-        }
-    }
-    
+    //4. DRAW 2 CARDS, HIDE ONE FROM DEALER & UPDATE SCORES & DECK        
     var getPlayerHand = function() {
         blackJack.drawCard(0);
         blackJack.drawCard(0);
@@ -346,29 +334,99 @@ var controller = (function(cardCounter, UI) {
         blackJack.drawCard(0);
         UI.displayDeckCount();
         var playerHand = blackJack.data.handValue[0];
+        var dealerHand = blackJack.data.handValue[1];
         if (playerHand === 21) {
+            dealerReveal();
             document.getElementById(DOM.win).textContent = 'WIN';
             blackJack.data.winCondition = 'win';
             document.getElementById(DOM.hit).disabled = true;
             nextRound();
         } else if (playerHand > 21) {
+            dealerReveal();
             document.getElementById(DOM.win).textContent = 'BUST';
-            blackJack.drawCard(1); //DEALER REVEAL CARD2
-            document.getElementById(DOM.dealerCard2).src = 'cards/' + blackJack.data.hand[1][1] + '.png';
             blackJack.data.winCondition = 'lose';
             document.getElementById(DOM.hit).disabled = true;
             nextRound();
         }
     }
     
+    var dealerReveal = function() {
+        disableAll();
+        blackJack.drawCard(1);
+        document.getElementById(DOM.dealerCard2).src = 'cards/' + blackJack.data.hand[1][1] + '.png';
+    }
+    
+    //6. BLACK JACK?
+    var blackJackCondition = function(player) {
+        var regex = /[kqj]/;
+        if (blackJack.data.hand[player][0].charAt(0) === 'a' && blackJack.data.hand[player][1].charAt(0).match(/[kqj]/)) {
+            disableAll();
+            if (player === 0) {
+                dealerReveal();
+                setTimeout(function() {
+                    if (blackJack.data.hand[1][0].charAt(0) === 'a' && blackJack.data.hand[1][1].charAt(0).match(/[kqj]/)) {
+                        setBlackJackPush();
+                    } else if (blackJack.data.hand[1][0].charAt(0).match(/[kqj]/) && blackJack.data.hand[1][1].charAt(0) === 'a') {
+                        setBlackJackPush();
+                    } else {
+                        blackJack.data.handValue[player] = 21;
+                        player === 0 ? document.getElementById(DOM.playerScore).textContent = '21' : document.getElementById(DOM.dealerScore).textContent = '21';
+                        document.getElementById(DOM.win).textContent = 'BLACK JACK';
+                        player === 0 ? blackJack.data.winCondition = 'win' : blackJack.data.winCondition = 'lose';
+                        nextRound();
+                    }
+                }, 1000);
+            } else {
+                blackJack.data.handValue[player] = 21;
+                player === 0 ? document.getElementById(DOM.playerScore).textContent = '21' : document.getElementById(DOM.dealerScore).textContent = '21';
+                document.getElementById(DOM.win).textContent = 'BLACK JACK';
+                player === 0 ? blackJack.data.winCondition = 'win' : blackJack.data.winCondition = 'lose';
+                nextRound();
+            }
+        } else if (blackJack.data.hand[player][0].charAt(0).match(/[kqj]/) && blackJack.data.hand[player][1].charAt(0) === 'a') {
+            disableAll();
+            if (player === 0) {
+                dealerReveal();
+                setTimeout(function() {
+                    if (blackJack.data.hand[1][0].charAt(0).match(/[kqj]/) && blackJack.data.hand[1][1].charAt(0) === 'a') {
+                        setBlackJackPush();
+                    } else if (blackJack.data.hand[1][0].charAt(0) === 'a' && blackJack.data.hand[1][1].charAt(0).match(/[kqj]/)) {
+                        setBlackJackPush();
+                    } else {
+                        blackJack.data.handValue[player] = 21;
+                        player === 0 ? document.getElementById(DOM.playerScore).textContent = '21' : document.getElementById(DOM.dealerScore).textContent = '21';
+                        document.getElementById(DOM.win).textContent = 'BLACK JACK';
+                        player === 0 ? blackJack.data.winCondition = 'win' : blackJack.data.winCondition = 'lose';
+                        nextRound();
+                    }
+                }, 1000);
+            } else {
+                blackJack.data.handValue[player] = 21;
+                player === 0 ? document.getElementById(DOM.playerScore).textContent = '21' : document.getElementById(DOM.dealerScore).textContent = '21';
+                document.getElementById(DOM.win).textContent = 'BLACK JACK';
+                player === 0 ? blackJack.data.winCondition = 'win' : blackJack.data.winCondition = 'lose';
+                nextRound();
+            }
+        }
+    }
+
+    var setBlackJackPush = function() {
+        blackJack.data.handValue[0] = 21;
+        blackJack.data.handValue[1] = 21;
+        document.getElementById(DOM.playerScore).textContent = '21';
+        document.getElementById(DOM.dealerScore).textContent = '21';
+        document.getElementById(DOM.win).textContent = 'PUSH';
+        blackJack.data.winCondition = 'push';
+        nextRound();
+    }
+    
     var dealerTurn = function() {
-        document.getElementById(DOM.hit).disabled = true;
-        document.getElementById(DOM.stand).disabled = true;
-        //6. WHEN STAND, REVEAL DEALER CARD
+        disableAll();
+        //7. WHEN STAND, REVEAL DEALER CARD
         blackJack.drawCard(1);
         document.getElementById(DOM.dealerCard2).src = 'cards/' + blackJack.data.hand[1][1] + '.png';
         blackJackCondition(1);
-        //7. DEALER ALGORITHM
+        //8. DEALER ALGORITHM
         var draw = function() {
             if (blackJack.data.handValue[1] !== blackJack.data.handValue[0]) {
                 setTimeout(function() {
@@ -383,7 +441,7 @@ var controller = (function(cardCounter, UI) {
             }
         }
         for (let i = 0; i < 10; i++) { draw(); }
-        //8. WINNER OF ROUND
+        //9. WINNER OF ROUND
         setTimeout(function() {
             if (blackJack.data.handValue[1] === 21) {
                 document.getElementById(DOM.win).textContent = 'LOSE';
@@ -405,10 +463,9 @@ var controller = (function(cardCounter, UI) {
         }, 1000);
     }
     
-    //9. ADD WINNINGS OR SUBTRACT LOSSES & PLAY AGAIN
+    //10. ADD WINNINGS OR SUBTRACT LOSSES & PLAY AGAIN
     var nextRound = function() {
-        document.getElementsByTagName('button').disabled = false;
-        document.getElementsByTagName('input').disabled = false;
+        disableAll();
         setTimeout(function() {
             UI.resetCards();
             document.getElementById(DOM.win).textContent = '';
@@ -431,7 +488,7 @@ var controller = (function(cardCounter, UI) {
         }, 3000);
     }
     
-    //10. NEW GAME
+    //11. NEW GAME
     var newGame = function() {
         document.getElementById(DOM.win).textContent = '';
         blackJack.data.bank.bet = 0;

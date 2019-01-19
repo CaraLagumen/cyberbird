@@ -2,19 +2,6 @@
 GENERAL
 */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    position: relative;
-}
-
-header {
-    padding-top: 3vh;
-    padding-bottom: 3vh;
-    font-size: 2.5vh;
-}
-
 h1 {
     color: #EFD869;
     text-shadow: 0px 0px 2vh #BA8A31;
@@ -40,29 +27,65 @@ button {
     border: none;
     border-radius: 5px;
     color: white;
-    font-size: 80%;
+    font-size: 2vh;
     text-transform: uppercase;
 }
 
 /*
-TABLE
+POSITIONING
 */
 
-.table {
-    height: 70vh;
-    top: -5vh;
+.container {
+    display: grid;
+    grid-template-areas:
+        'header header header'
+        'newgame . deckcount'
+        'dealerscore dealer .'
+        'win win win'
+        'playerscore player play'
+        'bank bank bet'
+        'bank bank .';
+    grid-template-rows: 10% 5% 20% 5% 25% 30% 10%;
+    grid-template-columns: 20% 40% 20%;
+    justify-content: center;
 }
 
+header { grid-area: header; }
+.new__game__container { grid-area: newgame; justify-self: end; margin-right: -20%; }
+.deck__count__container { grid-area: deckcount; justify-self: start; margin-left: -20%; }
+.dealer__container { grid-area: dealer; }
+.player__container { grid-area: player; }
+.dealer { grid-area: dealerscore; justify-self: end; margin-top: 20%; margin-right: -10%; }
+.player { grid-area: playerscore; justify-self: end; margin-top: 20%; margin-right: -10%; }
+#win { grid-area: win; height: 2vh; }
+.play { grid-area: play; justify-self: start; margin-left: -10%; }
+
+.bet {
+    grid-area: bet;
+    justify-self: start;
+    width: 300px;
+    margin-top: -10vh;
+    margin-left: -12vw;
+}
+
+.bank {
+    grid-area: bank;
+    justify-self: end;
+    height: 40vh;
+    width: 500px;
+    margin-right: 15vw;
+}
+
+/*
+STYLING
+*/
+
 #new__game {
-    top: 5vh;
-    left: -14vw;
     background-color: rgba(4, 12, 20, 0.2);
     font-weight: 100px;
 }
 
 #deck__count {
-    top: 5vh;
-    left: 14vw;
     padding: 10px;
     background-color: #123553;
     border-radius: 2px;
@@ -76,12 +99,12 @@ TABLE
 }
 
 .dealer__cards, .player__cards { height: 20vh; }
-#dealer__card1, #player__card1 { left: 50px; }
-#dealer__card2, #player__card2 { left: -55px; }
+#dealer__card1, #player__card1 { position: relative; left: 50px; }
+#dealer__card2, #player__card2 { position: relative; left: -55px; }
 
 #dealer__card__container, #player__card__container {
-    position: fixed;
-    width: 100%;
+    position: relative;
+    height: auto;
 }
 
 .score {
@@ -97,119 +120,53 @@ TABLE
     color: #33BC40;
 }
 
-.dealer {
-    top: 12vh;
-    left: -18vw;
-}
-
-.player {
-    top: -24vh;
-    left: -18vw;
-}
-
-#win { height: 5.5vh; }
-
-.play {
-    top: -16vh;
-    left: 17vw;
-}
-
 #hit__btn, #stand__btn, #deal__btn, #reset__btn {
     margin-bottom: 10px;
     background-color: #33BC40;
 }
 
-/*
-BANK
-*/
-
 .bank {
-    height: 500px;
-    padding-top: 10px;
     padding-left: 20px;
     background-color: #123553;
     border-style: groove;
     border-color: #CFD9D7;
     border-radius: 20px;
-    width: 30vw;
-    top: -16vh;
-    left: 24vw;
     box-shadow: 0px 0px 1vh black;
     text-align: left;
 }
 
-#winnings { font-weight: 900; }
-.tray { padding-top: 10px; }
-
 .chips, .chips__bet {
-    width: 6vw;
+    width: 100px;
     border-radius: 50%;
     box-shadow: 1px 1px 1vh black;
 }
 
 #all__in__btn {
-    top: -0.5vh;
+    position: relative;
+    top: -5px;
     margin-left: 15px;
-    height: 4vh;
+    height: 35px;
     background-color: #003A9B;
     box-shadow: 1px 1px 0.5vh black;
     font-size: 1.5vh;
 }
 
-.bet {
-    top: -650px;
-    left: 16vw;
-}
-
 #bet__total {
-    top: 20vh;
+    position: relative;
+    top: 25vh;
     left: -6vw;
     font-size: 5vh;
 }
 
 #deal__btn {
+    position: relative;
     top: -5vh;
     left: 2vw;
     background-color: #09B0D5;
 }
 
-#reset__btn {
+#reset__btn {position: relative;
     top: 4vh;
     left: -4vw;
     background-color: #C83A51;
-}
-
-/*
-MOBILE
-*/
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    * { overflow: hidden; }
-    #new__game, #deck__count { top: 50px; }
-    .play { top: 50px; }
-    .dealer { top: 1080px; }
-    .player { top: -10px; }
-    .bank {
-        top: -200px;
-        left: -20px;
-        height: 1000px;
-        width: 700px;
-    }
-    .bet {
-        top: -1400px;
-        left: 350px;
-        height: 500px;
-    }
-    #bet__total {
-        top: 300px;
-        left: -60px;
-    }
-    #reset__btn {
-        top: -10px;
-        left: -80px;
-        background-color: #C83A51;
-    }
-    .chips, .chips__bet {
-        width: 150px;
-    }
 }
