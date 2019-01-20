@@ -5,7 +5,8 @@ var blackJack = (function() {
         bank: {
             total: 0,
             bet: 0,
-            chipTotal: 0
+            chipTotal: 0,
+            chips: []
         },
         hand: [[], []],
         handValue: [0, 0],
@@ -26,9 +27,9 @@ var blackJack = (function() {
     //ADD MORE DECKS
     var addDeck = function() {
         data.decks.push(cards.deck);
-        data.decks = data.decks.flat();
+        data.decks = /*data.decks.flat();*/ data.decks.reduce(() => [].concat(...data.decks));
         if (data.decks.length > 1) {
-            data.decks = data.decks.flat();
+            data.decks = /*data.decks.flat();*/ data.decks.reduce(() => [].concat(...data.decks));
         }
         //UI
         UI.displayDeckCount();
@@ -40,6 +41,7 @@ var blackJack = (function() {
         if (data.bank.chipTotal <= data.bank.total) {
             data.bank.bet += data.bank.chipTotal;
             data.bank.total -= data.bank.chipTotal;
+            data.bank.chips.push(chip);
             UI.displayChipsBet(chip);
         }
         data.bank.chipTotal = 0;
@@ -140,7 +142,7 @@ var UI = (function() {
         allIn: "all__in__btn",
         deal: "deal__btn",
         reset: "reset__btn",
-        chips: ".chips",
+        chipsContainer: "chips__container",
         chip1: "chip1",
         chip5: "chip5",
         chip25: "chip25",
@@ -148,7 +150,7 @@ var UI = (function() {
         chip100: "chip100",
         chip500: "chip500",
         chip1000: "chip1000",
-        chipsBet: "chips__bet",
+        chipsBet: "chips__bet1",
         betTotal: "bet__total"
     }
     
@@ -162,10 +164,6 @@ var UI = (function() {
     
     var displayBank = function() {
         document.getElementById(DOMstrings.bank).textContent = blackJack.data.bank.total;
-    }
-    
-    var displayChipsBet = function(chip) {
-        document.getElementById(DOMstrings.chipsBet).src = 'chips/chip_' + chip + '.png';
     }
     
     var displayScore = function(player) {
@@ -206,21 +204,22 @@ var UI = (function() {
         proximity = -60 + (blackJack.data.hand[player].length - 2) * -100;
         containerAdjust = blackJack.data.hand[player].length * 23;
         if (player === 0) {
-            document.getElementById('player__card__container').style.left = containerAdjust + 'px';
-            document.getElementById('player__card' + blackJack.data.hand[player].length).style.left = proximity + 'px';
+            document.getElementById(DOMstrings.playerCardContainer).style.left = containerAdjust + 'px';
+            document.getElementById(DOMstrings.playerCard + blackJack.data.hand[player].length).style.left = proximity + 'px';
         } else {
-            document.getElementById('dealer__card__container').style.left = containerAdjust + 'px';
-            document.getElementById('dealer__card' + blackJack.data.hand[player].length).style.left = proximity + 'px';
+            document.getElementById(DOMstrings.dealerCardContainer).style.left = containerAdjust + 'px';
+            document.getElementById(DOMstrings.dealerCard + blackJack.data.hand[player].length).style.left = proximity + 'px';
         }
     }
     
     var resetCards = function() {
         var playerDiv = '<div id="player__card__container"><img class="cards" id="player__card1" src="cards/undefined.png"><img class="cards" id="player__card2" src="cards/undefined.png"></div>';
         var dealerDiv = '<div id="dealer__card__container"><img class="cards" id="dealer__card1" src="cards/undefined.png"><img class="cards" id="dealer__card2" src="cards/undefined.png"></div>';
-        //REMOVE OLD CARDS BEFORE ADDING NEW ONES
+        //REMOVE ENTIRE CONTAINER BEFORE ADDING NEW ONES
         if (blackJack.data.hand[0].length > 2 && blackJack.data.hand[1].length > 2) {
             document.getElementById(DOMstrings.playerCardContainer).remove();
             document.getElementById(DOMstrings.dealerCardContainer).remove();
+            //CREATE STARTING CONTAINER TO REFILL WITH CARDS WHEN DISPLAY CARD
             document.querySelector('.player__cards').insertAdjacentHTML('beforeend', playerDiv);
             document.querySelector('.dealer__cards').insertAdjacentHTML('beforeend', dealerDiv);
         } else if (blackJack.data.hand[0].length > 2) {
@@ -232,8 +231,31 @@ var UI = (function() {
         }
     }
     
+    var displayChipsBet = function(chip) {
+        if (blackJack.data.bank.chips.length === 1) {
+            document.getElementById(DOMstrings.chipsBet).src = 'chips/chip_' + chip + '.png';
+        } else if (blackJack.data.bank.chips.length > 1) {
+            var html, newHtml, elem, proximity, containerAdjust;
+            elem = DOMstrings.chipsContainer;
+            html = '<img class= "chips" id="chips__bet%id%" src="chips/chip_%value%.png">';
+            newHtml = html.replace('%value%', chip);
+            newHtml = newHtml.replace('%id%', blackJack.data.bank.chips.length);
+            document.getElementById(elem).insertAdjacentHTML('beforeend', newHtml);
+            //STACK CHIPS
+            proximity = -105 + (blackJack.data.bank.chips.length - 1) * -100;
+            containerAdjust = (blackJack.data.bank.chips.length - 1) * 50;
+            document.getElementById(DOMstrings.chipsContainer).style.left = containerAdjust + 'px';
+            document.getElementById('chips__bet' + blackJack.data.bank.chips.length).style.left = proximity + 'px';
+        }
+    }
+    
+    var resetChipsBet = function() {
+        document.getElementById(DOMstrings.chipsContainer).remove();
+        document.getElementById('deal__btn').insertAdjacentHTML('beforebegin', '<div id="chips__container"><img class= "chips__bet" id="chips__bet1" src="chips/chip.png"></div>');
+    }
+    
     return {
-        displayDeckCount, displayBet, displayBank, displayChipsBet, displayHand, displayScore, displayCard, resetCards,
+        displayDeckCount, displayBet, displayBank, displayChipsBet, resetChipsBet, displayHand, displayScore, displayCard, resetCards,
         
         getDOMstrings: function() {
             return DOMstrings;
@@ -262,7 +284,7 @@ var controller = (function(cardCounter, UI) {
         document.getElementById(DOM.chip500).addEventListener('click', () => blackJack.calcBet(500));
         document.getElementById(DOM.chip1000).addEventListener('click', () => blackJack.calcBet(1000));
         //ALL IN, RESET, OR DEAL
-        document.getElementById(DOM.reset).addEventListener('click', blackJack.clearBet);
+        document.getElementById(DOM.reset).addEventListener('click', reset);
         document.getElementById(DOM.allIn).addEventListener('click', blackJack.betAll);
         document.getElementById(DOM.deal).addEventListener('click', play);
         //HIT OR STAND
@@ -310,12 +332,18 @@ var controller = (function(cardCounter, UI) {
         document.getElementById(DOM.stand).disabled = true;
     }
     
-    //3. DEAL
+    //3. DEAL OR RESET BET
     var play = function() {
         setPhase(false);
         if (blackJack.data.bank.bet > 0) {
             getPlayerHand();
         }
+    }
+    
+    var reset = function() {
+        blackJack.data.bank.chips = [];
+        blackJack.clearBet();
+        UI.resetChipsBet();
     }
     
     //4. DRAW 2 CARDS, HIDE ONE FROM DEALER & UPDATE SCORES & DECK        
@@ -467,11 +495,13 @@ var controller = (function(cardCounter, UI) {
     var nextRound = function() {
         disableAll();
         setTimeout(function() {
+            UI.resetChipsBet();
             UI.resetCards();
             document.getElementById(DOM.win).textContent = '';
             blackJack.calcBank(blackJack.data.winCondition, blackJack.data.bank.bet);
             blackJack.data.hand = [[], []];
             blackJack.data.handValue = [0, 0];
+            blackJack.data.bank.chips = [];
             UI.displayScore(0);
             UI.displayScore(1);
             UI.displayHand(0);
@@ -495,6 +525,8 @@ var controller = (function(cardCounter, UI) {
         blackJack.data.bank.total = 1000;
         blackJack.data.hand = [[], []];
         blackJack.data.handValue = [0, 0];
+        blackJack.data.decks = [];
+        blackJack.addDeck();
         UI.displayBet();
         UI.displayBank();
         UI.displayHand(0);

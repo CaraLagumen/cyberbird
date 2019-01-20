@@ -147,6 +147,10 @@ BANK
     box-shadow: 1px 1px 1vh black;
 }
 
+.chips__bet {
+    left: -100px;
+}
+
 #all__in__btn {
     top: -0.5vh;
     margin-left: 15px;
@@ -163,7 +167,7 @@ BANK
 
 #bet__total {
     top: 20vh;
-    left: -6vw;
+    left: -8vw;
     font-size: 5vh;
 }
 
@@ -186,9 +190,12 @@ MOBILE
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     * { overflow: hidden; }
     #new__game, #deck__count { top: 50px; }
-    .play { top: 50px; }
-    .dealer { top: 1080px; }
-    .player { top: -10px; }
+    .dealer { top: 880px; }
+    .player { top: -20px; }
+    .play {
+        top: 40px;
+        left: 60px;
+    }
     .bank {
         top: -200px;
         left: -20px;
@@ -196,20 +203,26 @@ MOBILE
         width: 700px;
     }
     .bet {
-        top: -1400px;
+        top: -1480px;
         left: 350px;
-        height: 500px;
+        height: 800px;
     }
     #bet__total {
         top: 300px;
         left: -60px;
     }
+    #deal__btn {
+        top: 180px;
+    }
     #reset__btn {
-        top: -10px;
+        top: 250px;
         left: -80px;
         background-color: #C83A51;
     }
     .chips, .chips__bet {
         width: 150px;
+    }
+    .chips__bet {
+        left: -100px;
     }
 }
