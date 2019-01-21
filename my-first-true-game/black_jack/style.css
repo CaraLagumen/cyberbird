@@ -33,8 +33,8 @@ body {
 }
 
 button, input { z-index: 5 !important; }
-button:active, input:active { transform: translateY(5px); }
-button:hover, input:hover { transform: scale(1.05) !important; }
+button:active, input:active { transform: translateY(1px)!important; }
+button:hover, input:hover { background-image: linear-gradient(to bottom right, rgb(255, 255, 255, 0.1) 48%, rgb(0, 0, 0, 0) 50%); }
 button:disabled, input:disabled { background-color: #8C8F92 !important; }
 
 button {
