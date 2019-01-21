@@ -33,7 +33,9 @@ body {
 }
 
 button, input { z-index: 5 !important; }
-button:active, input:active { transform: translateY(1px); }
+button:active, input:active { transform: translateY(5px); }
+button:hover, input:hover { transform: scale(1.05) !important; }
+button:disabled, input:disabled { background-color: #8C8F92 !important; }
 
 button {
     padding: 10px;
@@ -62,7 +64,7 @@ TABLE
 
 #deck__count {
     top: 5vh;
-    left: 14vw;
+    left: 12vw;
     padding: 10px;
     background-color: #123553;
     border-radius: 2px;
@@ -148,7 +150,7 @@ BANK
 }
 
 .chips__bet {
-    left: -100px;
+    left: -125px;
 }
 
 #all__in__btn {
@@ -189,40 +191,42 @@ MOBILE
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     * { overflow: hidden; }
+    .table { margin-top: -20px; }
+    #new__game, #deck__count, #deal__btn, #reset__btn, #hit__btn, #stand__btn {
+        height: 80px;
+        font-size: 50px;
+    }
     #new__game, #deck__count { top: 50px; }
-    .dealer { top: 880px; }
-    .player { top: -20px; }
+    .dealer { top: 51vh; }
+    .player { top: -70px; }
     .play {
-        top: 40px;
-        left: 60px;
+        top: 20px;
+        left: 80px;
     }
     .bank {
-        top: -200px;
+        top: -150px;
         left: -20px;
         height: 1000px;
         width: 700px;
     }
     .bet {
-        top: -1480px;
-        left: 350px;
+        top: -1350px;
+        left: 400px;
         height: 800px;
     }
     #bet__total {
-        top: 300px;
-        left: -60px;
+        top: 275px;
+        left: -80px;
     }
     #deal__btn {
-        top: 180px;
+        top: 150px;
+        left: 20px;
     }
     #reset__btn {
         top: 250px;
-        left: -80px;
+        left: -140px;
         background-color: #C83A51;
     }
-    .chips, .chips__bet {
-        width: 150px;
-    }
-    .chips__bet {
-        left: -100px;
-    }
+    .chips, .chips__bet { width: 150px; }
+    .chips__bet { left: -100px; }
 }

@@ -242,7 +242,7 @@ var UI = (function() {
             newHtml = newHtml.replace('%id%', blackJack.data.bank.chips.length);
             document.getElementById(elem).insertAdjacentHTML('beforeend', newHtml);
             //STACK CHIPS
-            proximity = -105 + (blackJack.data.bank.chips.length - 1) * -100;
+            proximity = -130 + (blackJack.data.bank.chips.length - 1) * -100;
             containerAdjust = (blackJack.data.bank.chips.length - 1) * 50;
             document.getElementById(DOMstrings.chipsContainer).style.left = containerAdjust + 'px';
             document.getElementById('chips__bet' + blackJack.data.bank.chips.length).style.left = proximity + 'px';
@@ -334,8 +334,8 @@ var controller = (function(cardCounter, UI) {
     
     //3. DEAL OR RESET BET
     var play = function() {
-        setPhase(false);
         if (blackJack.data.bank.bet > 0) {
+            setPhase(false);
             getPlayerHand();
         }
     }
@@ -547,5 +547,8 @@ var controller = (function(cardCounter, UI) {
     }
 })(blackJack, UI);
 
-console.log('Welcome to Cara\'s first app ever. Hope you enjoy!');
+console.log('Welcome to Cara\'s first app ever.');
+console.log('To play, click some chips > deal > hit / stand > stand > repeat.');
+console.log('Closest to 21 without going over wins! Hope you enjoy!');
+console.log('---');
 controller.init();
