@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    overflow: hidden;
+    background-image: radial-gradient(#0E1414, #0E1215);
+    font-family: 'Roboto Condensed', sans-serif;
+    color: white;
+}
+
+h1 {
+    font-family: 'Libre Barcode 128 Text', cursive;
+    font-size: 5vh;
+    font-weight: 100;
+}
+
+#properties {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    font-size: 1vh;
+    color: #26282C;
+}
+
+h2 {
+    font-weight: 100;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+a:visited { color: #26282C; }
+
+#wip {
+    font-size: 5vh;
+}
