@@ -191,14 +191,19 @@ MOBILE
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     * { overflow: hidden; }
+    header { top: -20px; }
     .table { margin-top: -20px; }
     #new__game, #deck__count, #deal__btn, #reset__btn, #hit__btn, #stand__btn {
         height: 80px;
         font-size: 50px;
     }
-    #new__game, #deck__count { top: 50px; }
-    .dealer { top: 51vh; }
-    .player { top: -70px; }
+    #new__game, #deck__count {
+        /*top: 50px;*/
+        top: 50px;
+        left: 200px;
+    }
+    .dealer { /*top: 51vh;*/ top: -1.5vh; }
+    .player { /*top: -70px;*/ top: -140px; }
     .play {
         top: 20px;
         left: 80px;

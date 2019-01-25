@@ -102,7 +102,7 @@ var blackJack = (function() {
         if (condition === 'push') {
             data.bank.total;
         } else if (condition === 'win') {
-            data.bank.total += bet * 2;
+            data.bank.total += bet;
         } else if (condition === 'lose') {
             data.bank.total -= bet;
         }
@@ -266,7 +266,7 @@ var UI = (function() {
 
 
 
-var controller = (function(cardCounter, UI) {
+var controller = (function(game, UI) {
     
     //1. PICK CHIPS OR DELETE CHIPS UPDATES BANK
     var DOM = UI.getDOMstrings();
@@ -525,8 +525,10 @@ var controller = (function(cardCounter, UI) {
         blackJack.data.bank.total = 1000;
         blackJack.data.hand = [[], []];
         blackJack.data.handValue = [0, 0];
+        blackJack.data.bank.chips = [];
         blackJack.data.decks = [];
         blackJack.addDeck();
+        UI.resetChipsBet();
         UI.displayBet();
         UI.displayBank();
         UI.displayHand(0);
