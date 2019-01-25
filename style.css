@@ -6,7 +6,11 @@
 body {
     position: relative;
     overflow: hidden;
-    background-image: radial-gradient(#0E1414, #0E1215);
+    background-image: url(back.gif), radial-gradient(#0E1414, #0E1215);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     font-family: 'Roboto Condensed', sans-serif;
     color: white;
 }
