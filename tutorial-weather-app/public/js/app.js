@@ -26,7 +26,7 @@ weatherForm.addEventListener('submit', event => {
     messageSuccess.textContent = '';
 
     //FETCHING OUR OWN CREATED JSON IN SRC
-    fetch(`http://localhost:3000/weather?address=${location}`).then(response => {
+    fetch(`/weather?address=${location}`).then(response => { //LOCAL: fetch(`http://localhost:3000/weather?address=${location}`)
         response.json().then(data => {
             if (data.error) {
                 messageError.textContent = JSON.stringify(data.error);

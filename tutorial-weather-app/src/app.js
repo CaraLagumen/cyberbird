@@ -12,6 +12,7 @@ console.log(path.join(__dirname, '../public'));
 
 //STATE SERVER
 const app = express();
+const port = process.env.PORT || 3000; //HEROKU || LOCAL
 //DEFINE PATHS FOR EXPRESS CONFIG
 const publicDirPath = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../templates/views');
@@ -137,6 +138,6 @@ app.get('*', (req, res) => { //* WILDCARD MEANS ANY URL
 })
 
 //STARTS THE SERVER (CMD)
-app.listen(3000, () => {
-    console.log('server is up on port 3000');
+app.listen(port, () => {
+    console.log(`server is up on port ${port}`);
 })
