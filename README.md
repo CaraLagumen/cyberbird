@@ -1,4 +1,4 @@
-# cyberbird
+﻿# cyberbird
 My coding journey.
 
 [Live GitHub](https://caralagumen.github.io/cyberbird/)
@@ -8,19 +8,21 @@ self-taught since July 2018 (part time)
 
 ### Currently Taking
 
-	1. Udemy Javascript course
+	1. Udemy Node.js course
 
-	2. Harvard CS50 on YouTube
+	2. FCC Front End Libraries
 
-	3. FCC Front End Libraries
+	3. Harvard CS50 on YouTube
 
 ### Completed
 
-	1. FCC Web Design & Javascript Certifications
+	1. Udemy Javascript course
 
-	2. Codecademy Python and Javascript Lessons
+	2. FCC Web Design & Javascript Certifications
 
-	3. Lambda’s Intro to Web Dev
+	3. Codecademy Python and Javascript Lessons
+
+	4. Lambda’s Intro to Web Dev
 	
 ### Track
 
