@@ -107,7 +107,6 @@ export const renderRecipe = (recipe, isLiked) => {
 
                 </a>
             </div>
-        </div>
     `;
     elements.recipe.insertAdjacentHTML('afterbegin', markup);
 }
