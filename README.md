@@ -8,21 +8,17 @@ self-taught since July 2018 (part time)
 
 ### Currently Taking
 
-	1. Udemy Node.js course
-
-	2. FCC Front End Libraries
-
-	3. Harvard CS50 on YouTube
+	1. Angular (YouTube)
 
 ### Completed
 
-	1. Udemy Javascript course
+	1. Node.js & Javascript (Udemy)
 
-	2. FCC Web Design & Javascript Certifications
+	2. Web Design & Javascript (FCC)
 
-	3. Codecademy Python and Javascript Lessons
+	3. Intro to Web Dev (Lambda)
 
-	4. Lambda’s Intro to Web Dev
+	4. Python Syntax & Javascript Syntax (Codecademy)
 	
 ### Track
 
