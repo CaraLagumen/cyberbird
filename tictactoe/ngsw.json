@@ -1,0 +1,80 @@
+{
+  "configVersion": 1,
+  "timestamp": 1574482640951,
+  "index": "cyberbird/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "cyberbird/favicon.ico",
+        "cyberbird/index.html",
+        "cyberbird/main-es2015.c138a3532edd7d6a5245.js",
+        "cyberbird/main-es5.c138a3532edd7d6a5245.js",
+        "cyberbird/manifest.webmanifest",
+        "cyberbird/polyfills-es2015.2987770fde9daa1d8a2e.js",
+        "cyberbird/polyfills-es5.ef4b1e1fc703b3ff76e3.js",
+        "cyberbird/runtime-es2015.edb2fcf2778e7bf1d426.js",
+        "cyberbird/runtime-es5.edb2fcf2778e7bf1d426.js",
+        "cyberbird/styles.27f3ac8cb6941468946d.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "cyberbird/assets/icons/icon-128x128.png",
+        "cyberbird/assets/icons/icon-144x144.png",
+        "cyberbird/assets/icons/icon-152x152.png",
+        "cyberbird/assets/icons/icon-192x192.png",
+        "cyberbird/assets/icons/icon-384x384.png",
+        "cyberbird/assets/icons/icon-512x512.png",
+        "cyberbird/assets/icons/icon-72x72.png",
+        "cyberbird/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "cyberbird/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "cyberbird/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "cyberbird/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "cyberbird/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "cyberbird/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "cyberbird/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "cyberbird/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "cyberbird/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "cyberbird/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "cyberbird/index.html": "2ae8e23e7bf0dac3a0f91d7df0aa1ebae86957f1",
+    "cyberbird/main-es2015.c138a3532edd7d6a5245.js": "5aee427a11d1a80108d5787302fab07f1050abba",
+    "cyberbird/main-es5.c138a3532edd7d6a5245.js": "e6150546d4571a0a13e9ce21889204b97a1e1143",
+    "cyberbird/manifest.webmanifest": "1871b0e8b58a67bc0acc2023eecf9413f7b2a649",
+    "cyberbird/polyfills-es2015.2987770fde9daa1d8a2e.js": "cf5cbfa9134716054fb479ab21362146cdf1f2ff",
+    "cyberbird/polyfills-es5.ef4b1e1fc703b3ff76e3.js": "45c51483238468881240579c3fdecd19144cff17",
+    "cyberbird/runtime-es2015.edb2fcf2778e7bf1d426.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "cyberbird/runtime-es5.edb2fcf2778e7bf1d426.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "cyberbird/styles.27f3ac8cb6941468946d.css": "8fa9992e69b3f860f77ca5e2de0a233021bdd16c"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
