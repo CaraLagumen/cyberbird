@@ -8,7 +8,7 @@ self-taught since July 2018 (part time)
 
 ### Path (From most recent)
 
-	1. TypeScript, Angular, Advanced CSS, Node.js & Javascript (Udemy: https://www.udemy.com/user/cara-lagumen/)
+	1. TypeScript, Angular, Advanced CSS, Node.js & Javascript (Udemy)
 
 	2. Web Design & Javascript (FCC)
 
@@ -18,7 +18,8 @@ self-taught since July 2018 (part time)
 	
 ### Track
 
+[Udemy](https://www.udemy.com/user/cara-lagumen/)
 [Code Pen](https://codepen.io/CaraLagumen/#) |
 [Codewars](https://www.codewars.com/users/CaraLagumen) |
-[FCC Potfolio](https://www.freecodecamp.org/caralagumen) |
+[FCC](https://www.freecodecamp.org/caralagumen) |
 [FCC Forum](https://www.freecodecamp.org/forum/u/CaraLagumen)
