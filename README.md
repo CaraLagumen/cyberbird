@@ -6,17 +6,13 @@ My coding journey.
 ## Timeline
 self-taught since July 2018 (part time)
 
-### Currently Taking
+### Path (From most recent)
 
-	1. Angular (YouTube)
-
-### Completed
-
-	1. Node.js & Javascript (Udemy)
+	1. TypeScript, Angular, Advanced CSS, Node.js & Javascript (Udemy: https://www.udemy.com/user/cara-lagumen/)
 
 	2. Web Design & Javascript (FCC)
 
-	3. Intro to Web Dev (Lambda)
+	3. Intro to Web Dev (Lambda School)
 
 	4. Python Syntax & Javascript Syntax (Codecademy)
 	
