@@ -18,7 +18,7 @@ self-taught since July 2018 (part time)
 	
 ### Track
 
-[Udemy](https://www.udemy.com/user/cara-lagumen/)
+[Udemy](https://www.udemy.com/user/cara-lagumen/) |
 [Code Pen](https://codepen.io/CaraLagumen/#) |
 [Codewars](https://www.codewars.com/users/CaraLagumen) |
 [FCC](https://www.freecodecamp.org/caralagumen) |
